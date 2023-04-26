@@ -24,22 +24,22 @@ void printVector(const vector<T>& vec) {
 
 
 int main() {
-    ll N; cin >> N;
-    vector<ll> X;
-    rep(i, 0, 3) {
-        ll x; cin >> x;
-        X.push_back(x);
+    int N; cin >> N;
+    vector<ll> A, B;
+    rep(i, 0, N) {
+        int a; cin >> a;
+        A.push_back(a);
     }
-    sort(X.begin(), X.end());
-    ll ans = INF;
-    rep(i, 0, 10000) { // X[0]の個数を 0 〜 10000まで探索
-        rep(j, 0, 10000-i) { // X[1]の個数を 0 〜 10000-iまで探索
-            ll sum = X[0]*i+X[1]*j; // X[0], X[1]の総和を計算
-            if ((N-sum)%X[2] == 0) { // X[2]で割り切れる場合
-                ans = min(ans, i+j+(N-sum)/X[2]); // 最小値を更新
-            }
-        }
+    rep(i, 0, N) {
+        int b; cin >> b;
+        B.push_back(b);
     }
-    cout << ans << endl; // 答えを出力
+    sort(A.begin(), A.end());
+    sort(B.begin(), B.end());
+    ll ans = 0;
+    rep(i, 0, N) {
+        ans += abs(A[i]-B[i]);
+    }
+    cout << ans << endl;
     return 0;
 }
